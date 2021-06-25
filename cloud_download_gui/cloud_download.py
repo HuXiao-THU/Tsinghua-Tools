@@ -20,7 +20,10 @@ def download(save_dir, cloud_share_key, path='/'):
     r = requests.get('https://cloud.tsinghua.edu.cn/api/v2.1/share-links/{}/dirents/?path={}'.format(cloud_share_key, path))
     if r.status_code == 404:
         print("内容不存在，T^T，看看是不是链接输错了？")
-        return
+        return False
+    if r.status_code == 500:
+        print("清华网盘在摸鱼 (=´ω｀=)...过一段时间再试试吧")
+        return False
     obj_list = r.json()['dirent_list']
     for obj in obj_list:
         if obj['is_dir']:
@@ -42,7 +45,7 @@ def download(save_dir, cloud_share_key, path='/'):
                 print('download for {} failed, {}'.format(obj['file_path'], str(e)))
             if success:
                 print('{} downloaded.'.format(obj['file_path']))
-
+    return True
 
 def getSharedContent():
     pass
@@ -62,8 +65,9 @@ def main():
             # TODO: 测试下载链接
             save_dir = getSaveDir()
             print("保存在{}，开始下载...".format(save_dir))
-            download(save_dir, cloud_share_key, path='/')
-            print("下载完毕！ヽ( ･∀･)ﾉ  ")
+            success = download(save_dir, cloud_share_key, path='/')
+            if success:
+                print("下载完毕！ヽ( ･∀･)ﾉ  ")
             input("按回车下载新的链接...")
         else:
             print("分享链接格式不正确，请重试！")
