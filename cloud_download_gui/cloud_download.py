@@ -31,7 +31,6 @@ if __name__ == "__main__":
     # print('文件路径：' + pic_path + ' 图片地址：' + pic_url)
     for i in range(650):
         url = ''
-        
         path = './photos/{:d}.jpg'.format(i)
         succ = download_image(url, path)
         if succ:
