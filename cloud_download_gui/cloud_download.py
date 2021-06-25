@@ -2,7 +2,6 @@ import os
 import requests
 import tkinter as tk
 from tkinter import filedialog
-from requests.api import get
 
 download_url = 'https://cloud.tsinghua.edu.cn/d/{}/files/?p={}&dl=1'
 
@@ -36,7 +35,7 @@ def download(save_dir, cloud_share_key, path='/'):
             try:
                 r = requests.get(file_url)
                 save_file = os.path.join(save_dir, obj['file_path'][1:]).replace('\\', '/')
-                with open(save_file, 'ab') as f:
+                with open(save_file, 'wb') as f:
                     f.write(r.content)
             except Exception as e:
                 success = False
@@ -51,7 +50,7 @@ def getSharedContent():
 def getSaveDir():
     root = tk.Tk()
     root.withdraw()
-    save_dir = filedialog.askdirectory()
+    save_dir = filedialog.askdirectory(title='选择保存文件夹', initialdir='./')
     root.destroy()
     return save_dir
 
