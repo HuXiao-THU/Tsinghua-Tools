@@ -1,37 +1,35 @@
-import requests
 import os
+import requests
 
-def download_image(pic_url, pic_path):
-    headers = {
-        'X-Requested-With': 'XMLHttpRequest',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 '
-                      '(KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
-    }
-    try:
-        try:
-            img = requests.get(pic_url, headers=headers, timeout=10)
-            if img.encoding == 'utf-8':
-                # no such file!
-                return False
-            with open(pic_path, 'ab') as f:
-                f.write(img.content)
-        except Exception as e:
-            # print('this url not exists!')
-            return False
-        # print (pic_path + "保存完成")
-        return True
-    except Exception as e:
-        # print(e)
-        # print("保存图片失败: " + pic_url)
-        return False
+cloud_share_key = '5a288xxxxxxxxxe3b0dd'
+download_url = 'https://cloud.tsinghua.edu.cn/d/{}/files/?p={}&dl=1'
 
-if __name__ == "__main__":
-    if not os.path.exists('./photos/'):
-        os.mkdir('./photos/')
-    # print('文件路径：' + pic_path + ' 图片地址：' + pic_url)
-    for i in range(650):
-        url = ''
-        path = './photos/{:d}.jpg'.format(i)
-        succ = download_image(url, path)
-        if succ:
-            print("photo {:d} saved.\ttotal process:\t{:.2f}%".format(i, i/636*100))
+if not os.path.exists('./{}/'.format(cloud_share_key)):
+    os.mkdir('./{}/'.format(cloud_share_key))
+
+
+def downloadFile(path):
+    obj_list = requests.get(
+        'https://cloud.tsinghua.edu.cn/api/v2.1/share-links/{}/dirents/?path={}'.format(cloud_share_key, path)).json()[
+        'dirent_list']
+    for obj in obj_list:
+        if obj['is_dir']:
+            new_local_path = ('./{}'.format(cloud_share_key)) + obj['folder_path']
+            if not os.path.exists(new_local_path):
+                os.mkdir(new_local_path)
+            print(new_local_path + ' created.')
+            downloadFile(obj['folder_path'])
+        else:
+            file_url = download_url.format(cloud_share_key, obj['file_path'])
+            try:
+                r = requests.get(file_url)
+                with open('./{}/{}'.format(cloud_share_key, obj['file_path']), 'ab') as f:
+                    f.write(r.content)
+            except Exception as e:
+                print('download for {} failed, {}'.format(obj['file_path'], str(e)))
+            print('{} downloaded.'.format(obj['file_path']))
+
+
+if __name__ == '__main__':
+    downloadFile('/')
+    print('download task completed.')
