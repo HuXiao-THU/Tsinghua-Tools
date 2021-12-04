@@ -1,5 +1,6 @@
 import os
 import requests
+import urllib.parse
 import tkinter as tk
 from tkinter import filedialog
 
@@ -17,7 +18,7 @@ def get_share_key(share_link):
     return key
 
 def download(save_dir, cloud_share_key, path='/'):
-    r = requests.get('https://cloud.tsinghua.edu.cn/api/v2.1/share-links/{}/dirents/?path={}'.format(cloud_share_key, path))
+    r = requests.get('https://cloud.tsinghua.edu.cn/api/v2.1/share-links/{}/dirents/?path={}'.format(cloud_share_key, urllib.parse.quote(path)))
     if r.status_code == 404:
         print("内容不存在，T^T，看看是不是链接输错了？")
         return False
@@ -33,7 +34,7 @@ def download(save_dir, cloud_share_key, path='/'):
             print(new_save_dir + ' created.')
             download(save_dir, cloud_share_key, obj['folder_path'])
         else:
-            file_url = download_url.format(cloud_share_key, obj['file_path'])
+            file_url = download_url.format(cloud_share_key, urllib.parse.quote(obj['file_path']))
             success = True
             try:
                 r = requests.get(file_url)
