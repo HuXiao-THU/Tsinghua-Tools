@@ -25,8 +25,8 @@ with open("python.pdf", "wb") as f:
 
 ## GUI
 
-* 做一个勾选框，实现选择性下载
+* 做一个勾选框，实现选择性下载...done!
 * 针对图片分享，做预览窗口
 
 ## 导出exe文件
-`pyinstaller cloud_download_v2.spec`
+`pyinstaller cloud_download.spec`

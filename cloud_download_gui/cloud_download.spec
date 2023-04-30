@@ -3,10 +3,10 @@
 block_cipher = None
 
 
-a = Analysis(['cloud_download_v2.py', 'util.py', 'SharedDirectory.py'],
+a = Analysis(['cloud_download_v2.py', 'util.py', 'SharedDirectory.py', 'check_list_gui.py'],
              pathex=['D:/Programs/Tsinghua-Tools/cloud_download_gui'],
              binaries=[],
-             datas=[],
+             datas=[('C:/Users/HuXiao/AppData/Local/Programs/Python/Python37/lib/site-packages/ttkwidgets/assets/checked.png', 'imgs'), ('C:/Users/HuXiao/AppData/Local/Programs/Python/Python37/lib/site-packages/ttkwidgets/assets/unchecked.png', 'imgs'), ('C:/Users/HuXiao/AppData/Local/Programs/Python/Python37/lib/site-packages/ttkwidgets/assets/tristate.png', 'imgs')],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
@@ -23,7 +23,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='cloud_download_v2',
+          name='cloud_download_v2.1',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,

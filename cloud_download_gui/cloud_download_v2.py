@@ -5,6 +5,7 @@ import tkinter as tk
 from tkinter import filedialog
 from util import *
 from SharedDirectory import *
+from check_list_gui import *
 
 def download(tree):
     pass
@@ -26,6 +27,11 @@ def main():
             if total_file == 0:
                 printlog("该分享链接中没有文件！下载取消！")
                 continue
+
+            print("请选择需要下载的文件......")
+            check_items_gui(SD)
+            total_size, total_file = SD.get_checked_info()
+            printlog("总共选择了{:d}个文件，总大小为{:s}".format(total_file, convertFileSize(total_size)))
 
             print("请选择下载位置......")
             save_dir = getSaveDir()

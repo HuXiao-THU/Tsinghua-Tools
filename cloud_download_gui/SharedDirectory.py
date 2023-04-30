@@ -1,4 +1,3 @@
-
 import treelib 
 import os
 import requests
@@ -37,18 +36,28 @@ class SharedDirectory():
                 # 如果是子目录，加入目录节点并获取子目录后加入队列
                 if obj['is_dir']:
                     current_path = obj['folder_path']
-                    self.tree.create_node(tag=obj['folder_name'], identifier=current_path, parent=parent_node, data={'is_dir':True, 'size':0})
+                    self.tree.create_node(tag=obj['folder_name'], identifier=current_path, parent=parent_node, data={'is_dir':True, 'size':0, 'checked':False})
                     r = requests.get('https://cloud.tsinghua.edu.cn/api/v2.1/share-links/{}/dirents/?path={}'.format(self.share_key, urllib.parse.quote(current_path)))
                     self.process_queue.put((current_path, r.json()['dirent_list']))
                 # 如果是文件，加入文件节点
                 else:
-                    self.tree.create_node(tag=obj['file_name'], identifier=obj['file_path'], parent=parent_node, data={'is_dir':False, 'size':obj['size']})
+                    self.tree.create_node(tag=obj['file_name'], identifier=obj['file_path'], parent=parent_node, data={'is_dir':False, 'size':obj['size'], 'checked':False})
 
     def get_total_info(self):
         for node_id in self.tree.expand_tree():
             self.total_size += self.tree[node_id].data['size']
             if not self.tree[node_id].data['is_dir']:
                 self.total_file += 1
+        return self.total_size, self.total_file
+    
+    def get_checked_info(self):
+        self.total_file = 0
+        self.total_size = 0
+        for node_id in self.tree.expand_tree():
+            if self.tree[node_id].data['checked']:
+                self.total_size += self.tree[node_id].data['size']
+                if not self.tree[node_id].data['is_dir']:
+                    self.total_file += 1
         return self.total_size, self.total_file
     
     def download(self, save_dir):
@@ -60,6 +69,9 @@ class SharedDirectory():
         downloaded_size = 0
         
         for node_id in self.tree.expand_tree():
+            # 如果没有选中该节点，直接跳过
+            if not self.tree[node_id].data['checked']:
+                continue
             # 如果是目录，就建立对应的目录
             if self.tree[node_id].data['is_dir']:
                 new_dir = os.path.join(save_dir, self.tree[node_id].identifier[1:]).replace('\\', '/')
@@ -95,6 +107,21 @@ class SharedDirectory():
             return True
         else:
             return False
+    
+    def get_all_nodes_info(self):
+        info = []   #(parent, iid, text)
+        for node_id in self.tree.expand_tree():
+            if node_id == '/':
+                parent = ""
+            else:
+                parent = self.tree.parent(node_id).identifier
+            iid = self.tree[node_id].identifier
+            text = self.tree[node_id].tag
+            info.append((parent, iid, text))
+        return info
+
+    def set_check(self, node_id):
+        self.tree[node_id].data['checked'] = True
 
 if __name__ == '__main__':
     SD = SharedDirectory()
