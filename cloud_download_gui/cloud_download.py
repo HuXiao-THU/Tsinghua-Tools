@@ -25,19 +25,22 @@ def download(save_dir, cloud_share_key, path='/'):
     if r.status_code == 500:
         print("清华网盘在摸鱼 (=´ω｀=)...过一段时间再试试吧")
         return False
+    # 遍历该目录
     obj_list = r.json()['dirent_list']
     for obj in obj_list:
+        # 如果是子目录，递归处理
         if obj['is_dir']:
             new_save_dir = os.path.join(save_dir, obj['folder_path'][1:]).replace('\\', '/')
             if not os.path.exists(new_save_dir):
                 os.mkdir(new_save_dir)
             print(new_save_dir + ' created.')
             download(save_dir, cloud_share_key, obj['folder_path'])
+        # 如果是文件，下载下来
         else:
             file_url = download_url.format(cloud_share_key, urllib.parse.quote(obj['file_path']))
             success = True
             try:
-                r = requests.get(file_url)
+                r = requests.get(file_url, headers='')
                 save_file = os.path.join(save_dir, obj['file_path'][1:]).replace('\\', '/')
                 with open(save_file, 'wb') as f:
                     f.write(r.content)
