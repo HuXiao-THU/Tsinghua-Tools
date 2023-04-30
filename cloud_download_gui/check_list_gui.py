@@ -1,9 +1,11 @@
 from ttkwidgets import CheckboxTreeview
+from tkinter import *
 import tkinter as tk
 from SharedDirectory import SharedDirectory
 
 def check_items_gui(SD:SharedDirectory):
     root = tk.Tk()
+    cl = tk.Frame(root)
 
     def comfirm():
         checked_items = tree.get_all_checked()
@@ -11,8 +13,20 @@ def check_items_gui(SD:SharedDirectory):
             SD.set_check(iid)
         root.destroy()
 
-    tree = CheckboxTreeview(root)
+    tree = CheckboxTreeview(cl)
+    tree.column('#0', width = 800, anchor = CENTER)
+
+    yscrollbar = Scrollbar(cl)
+    yscrollbar.pack(side=RIGHT,fill=Y)
+    xscrollbar = Scrollbar(cl, orient=HORIZONTAL)
+    xscrollbar.pack(side=BOTTOM,fill=X)
     tree.pack()
+    cl.pack()
+
+    yscrollbar.config(command=tree.yview)
+    xscrollbar.config(command=tree.xview)
+    tree.configure(yscrollcommand=yscrollbar.set)
+    tree.configure(xscrollcommand=xscrollbar.set)
 
     for parent, iid, tag in SD.get_all_nodes_info():
         tree.insert(parent, "end", iid, text=tag)

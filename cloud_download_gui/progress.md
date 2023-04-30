@@ -26,8 +26,8 @@ with open("python.pdf", "wb") as f:
 ## GUI
 
 * 做一个勾选框，实现选择性下载...done!
-    * 把checklist窗口弄大一点
-    * 加上滚动条
+    * 把checklist窗口弄大一点...done!
+    * 加上滚动条...done!
 * 针对图片分享，做预览窗口
 
 ## 导出exe文件
