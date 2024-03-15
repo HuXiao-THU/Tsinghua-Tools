@@ -1,8 +1,5 @@
-import tkinter as tk
-from tkinter import filedialog
-from datetime import datetime, timedelta
-import numpy as np
-import math
+from tkinter import filedialog, Tk
+from datetime import datetime
 
 header = {
     'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36'
@@ -42,7 +39,7 @@ def get_share_key(share_link):
     return key
 
 def getSaveDir():
-    root = tk.Tk()
+    root = Tk()
     root.withdraw()
     save_dir = filedialog.askdirectory(title='选择保存文件夹', initialdir='./')
     root.destroy()

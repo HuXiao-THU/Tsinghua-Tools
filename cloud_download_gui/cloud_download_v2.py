@@ -1,8 +1,3 @@
-import os
-import requests
-import urllib.parse
-import tkinter as tk
-from tkinter import filedialog
 from util import *
 from SharedDirectory import *
 from check_list_gui import *
@@ -11,6 +6,7 @@ def download(tree):
     pass
 
 def main():
+    print("注意：使用时请关闭代理！！！！！！")
     while True:
         share_link = input("请粘贴分享下载链接：")
         share_key = get_share_key(share_link)
