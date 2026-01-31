@@ -1,6 +1,6 @@
 {
   "productName": "Tsinghua Cloud Downloader",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "identifier": "cn.edu.tsinghua.cloud-downloader",
   "build": {
     "beforeDevCommand": "npm run dev",
