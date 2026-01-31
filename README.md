@@ -29,15 +29,35 @@
 - **密码保护**：支持带密码的分享链接，自动弹窗输入
 - **实时进度**：单文件进度 + 总体进度实时显示
 
-**下载安装**：
-- 前往 [Releases](https://github.com/HuXiao-THU/Tsinghua-Tools/releases) 页面下载
-- **Mac 用户**：下载 `.dmg` 文件，双击打开后拖入「应用程序」
-  > ⚠️ 首次打开如提示"已损坏"，请在终端执行：  
-  > `xattr -cr /Applications/Tsinghua\ Cloud\ Downloader.app`
-- **Windows 用户**：下载 `.msi` 或 `.exe` 安装包
-  > 可能触发 SmartScreen，点击「仍要运行」即可
+#### 下载安装
 
-**使用方法**：
+👉 **[点击前往 Releases 页面下载](https://github.com/HuXiao-THU/Tsinghua-Tools/releases)**
+
+- **Mac (Apple Silicon)**：下载 `aarch64.dmg`
+- **Mac (Intel)**：下载 `x64.dmg`
+- **Windows**：下载 `.msi` 或 `.exe`
+
+---
+
+> ### ⚠️ Mac 用户必读
+> 
+> 首次打开应用如提示 **"已损坏，无法打开"**，这是正常现象（应用未经 Apple 签名）。
+> 
+> **解决方法**：打开「终端」应用，复制粘贴以下命令并回车：
+> 
+> ```bash
+> xattr -cr /Applications/Tsinghua\ Cloud\ Downloader.app
+> ```
+> 
+> 然后即可正常打开应用。
+
+---
+
+> **Windows 用户**：可能触发 SmartScreen 提示，点击「仍要运行」即可。
+
+---
+
+#### 使用方法
 1. 复制清华云盘分享链接（如 `https://cloud.tsinghua.edu.cn/d/xxxxxx/`）
 2. 粘贴到应用中，点击"解析"
 3. 选择需要下载的文件/文件夹
