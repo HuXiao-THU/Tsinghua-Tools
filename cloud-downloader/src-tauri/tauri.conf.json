@@ -1,5 +1,5 @@
 {
-  "productName": "Tsinghua Cloud Downloader",
+  "productName": "清华云盘下载器",
   "version": "1.0.0",
   "identifier": "cn.edu.tsinghua.cloud-downloader",
   "build": {
@@ -12,7 +12,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "Tsinghua Cloud Downloader",
+        "title": "清华云盘下载器",
         "width": 1000,
         "height": 720,
         "resizable": true

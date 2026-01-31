@@ -46,7 +46,7 @@
 > **解决方法**：打开「终端」应用，复制粘贴以下命令并回车：
 > 
 > ```bash
-> xattr -cr /Applications/Tsinghua\ Cloud\ Downloader.app
+> xattr -cr /Applications/清华云盘下载器.app
 > ```
 > 
 > 然后即可正常打开应用。

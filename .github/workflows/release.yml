@@ -57,6 +57,17 @@ jobs:
           tagName: ${{ github.ref_name }}
           releaseName: '清华云盘下载器 ${{ github.ref_name }}'
           releaseBody: |
+            # 清华云盘下载器 v1.0.0
+
+            首个正式版本发布！
+
+            ## 功能
+            - 📥 **批量下载**：一键下载分享链接中的所有文件
+            - 📁 **选择性下载**：自由勾选需要的文件/文件夹
+            - 📦 **大文件支持**：流式传输，支持 GB 级文件下载
+            - 🔐 **密码保护**：支持带密码的分享链接
+            - 📊 **实时进度**：单文件 + 总体进度实时显示
+
             ## 下载说明
             - **Mac (Apple Silicon)**: 下载 `aarch64.dmg` 文件
             - **Mac (Intel)**: 下载 `x64.dmg` 文件
@@ -66,7 +77,7 @@ jobs:
             ### Mac
             首次打开如提示"已损坏，无法打开"，请在终端执行：
             ```bash
-            xattr -cr /Applications/Tsinghua\ Cloud\ Downloader.app
+            xattr -cr /Applications/清华云盘下载器.app
             ```
             ### Windows
             可能触发 SmartScreen，点击「仍要运行」即可
