@@ -31,8 +31,11 @@
 
 **下载安装**：
 - 前往 [Releases](https://github.com/HuXiao-THU/Tsinghua-Tools/releases) 页面下载
-- **Mac 用户**：下载 `.dmg` 文件，双击打开后拖入"应用程序"
+- **Mac 用户**：下载 `.dmg` 文件，双击打开后拖入「应用程序」
+  > ⚠️ 首次打开如提示"已损坏"，请在终端执行：  
+  > `xattr -cr /Applications/Tsinghua\ Cloud\ Downloader.app`
 - **Windows 用户**：下载 `.msi` 或 `.exe` 安装包
+  > 可能触发 SmartScreen，点击「仍要运行」即可
 
 **使用方法**：
 1. 复制清华云盘分享链接（如 `https://cloud.tsinghua.edu.cn/d/xxxxxx/`）

@@ -58,13 +58,18 @@ jobs:
           releaseName: '清华云盘下载器 ${{ github.ref_name }}'
           releaseBody: |
             ## 下载说明
-            - **Mac (Apple Silicon)**: 下载 `.dmg` 文件（aarch64）
-            - **Mac (Intel)**: 下载 `.dmg` 文件（x64）
+            - **Mac (Apple Silicon)**: 下载 `aarch64.dmg` 文件
+            - **Mac (Intel)**: 下载 `x64.dmg` 文件
             - **Windows**: 下载 `.msi` 或 `.exe` 安装包
 
             ## 安装注意
-            - Mac 首次打开可能提示"未验证开发者"，请在"系统设置→隐私与安全性"中允许
-            - Windows 可能触发 SmartScreen，点击"仍要运行"即可
+            ### Mac
+            首次打开如提示"已损坏，无法打开"，请在终端执行：
+            ```bash
+            xattr -cr /Applications/Tsinghua\ Cloud\ Downloader.app
+            ```
+            ### Windows
+            可能触发 SmartScreen，点击「仍要运行」即可
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
