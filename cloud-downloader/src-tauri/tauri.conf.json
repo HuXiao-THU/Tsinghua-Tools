@@ -1,0 +1,33 @@
+{
+  "productName": "Tsinghua Cloud Downloader",
+  "version": "0.1.0",
+  "identifier": "cn.edu.tsinghua.cloud-downloader",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:5173",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "Tsinghua Cloud Downloader",
+        "width": 1000,
+        "height": 720,
+        "resizable": true
+      }
+    ]
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "macOS": {
+      "infoPlist": "Info.plist"
+    },
+    "icon": [
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}

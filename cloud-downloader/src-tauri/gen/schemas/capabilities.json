@@ -1,0 +1,1 @@
+{"main":{"identifier":"main","description":"Default capabilities for the app","local":true,"windows":["main"],"permissions":["dialog:allow-open","dialog:allow-message","core:path:allow-join","core:event:allow-listen","core:event:allow-emit"]}}
