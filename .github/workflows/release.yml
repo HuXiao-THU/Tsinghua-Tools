@@ -77,7 +77,7 @@ jobs:
             ### Mac
             首次打开如提示"已损坏，无法打开"，请在终端执行：
             ```bash
-            xattr -cr /Applications/清华云盘下载器.app
+            xattr -cr /Applications/TsinghuaCloudDownloader.app
             ```
             ### Windows
             可能触发 SmartScreen，点击「仍要运行」即可
