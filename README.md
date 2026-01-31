@@ -12,7 +12,7 @@
 
 | 主界面 - 文件选择 | 下载进度 |
 |:---:|:---:|
-| ![主界面](assets/screenshots/main.png) | ![下载进度](assets/screenshots/download.png) |
+| <img src="assets/screenshots/main.png" width="400"> | <img src="assets/screenshots/download.png" width="400"> |
 
 <p align="center">
   <img src="assets/screenshots/password.png" width="400" alt="密码输入">
