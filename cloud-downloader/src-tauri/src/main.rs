@@ -1,3 +1,6 @@
+// 在 release 模式下隐藏 Windows 控制台窗口
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+
 use cloud_download_tauri as core;
 
 #[tauri::command]
