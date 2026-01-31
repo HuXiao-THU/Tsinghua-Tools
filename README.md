@@ -17,7 +17,7 @@
 - 实时下载进度显示
 
 **下载安装**：
-- 前往 [Releases](https://github.com/你的用户名/Tsinghua-Tools/releases) 页面下载
+- 前往 [Releases](https://github.com/HuXiao-THU/Tsinghua-Tools/releases) 页面下载
 - **Mac 用户**：下载 `.dmg` 文件，双击打开后拖入"应用程序"
 - **Windows 用户**：下载 `.msi` 或 `.exe` 安装包
 
